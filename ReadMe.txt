@@ -1,1 +1,1 @@
-Estamos probando a ver kp2
+Esto es temporal y con html basicos, apenas estoy priorisando funcionamiento, los estilos espero que se hagan rapido
