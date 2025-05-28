@@ -1,27 +1,37 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-from models import obtener_menu
-from database import init_db
+from flask import Flask, jsonify
+import sqlite3
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-init_db()
+def get_db_connection():
+    conn = sqlite3.connect('menu.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 @app.route('/api/menu', methods=['GET'])
 def menu_dia():
-    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-    dia_actual = dias[datetime.today().weekday()]
-    platos = obtener_menu(dia_actual)
-    return jsonify({"dia": dia_actual, "platos": platos})
+    dia_semana = datetime.today().strftime('%A')  # 'Monday', 'Tuesday', etc.
+    dias_map = {
+        'Monday': 'Lunes',
+        'Tuesday': 'Martes',
+        'Wednesday': 'Miércoles',
+        'Thursday': 'Jueves',
+        'Friday': 'Viernes'
+    }
+    dia_es = dias_map.get(dia_semana, 'Lunes')
+    
+    conn = get_db_connection()
+    menu = conn.execute('SELECT platos FROM menu WHERE dia = ?', (dia_es,)).fetchone()
+    conn.close()
 
-@app.route('/api/especiales', methods=['POST'])
-def guardar_especiales():
-    data = request.get_json()
-    seleccionados = data.get('platos', [])
-    print("Platos seleccionados:", seleccionados)
-    return jsonify({"message": "Especiales recibidos", "platos": seleccionados})
+    if menu:
+        import json
+        return jsonify({"dia": dia_es, "menu": json.loads(menu['platos'])})
+    else:
+        return jsonify({"dia": dia_es, "menu": []})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
