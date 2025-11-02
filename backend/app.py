@@ -1,37 +1,29 @@
-from flask import Flask, jsonify
-import sqlite3
-from datetime import datetime
+import os
+import sys
+from flask import Flask, send_from_directory
 from flask_cors import CORS
+from pedidos_routes import pedidos_bp
+from admin_routes import admin_bp
 
-app = Flask(__name__)
+# Función que permite compatibilidad con PyInstaller
+def get_resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+# Establecer ruta correcta para 'static'
+static_folder_path = get_resource_path('static')
+
+app = Flask(__name__, static_folder=static_folder_path, static_url_path='/')
 CORS(app)
 
-def get_db_connection():
-    conn = sqlite3.connect('menu.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+# Rutas
+app.register_blueprint(pedidos_bp, url_prefix='/api/pedidos')
+app.register_blueprint(admin_bp, url_prefix='/api/admin')
 
-@app.route('/api/menu', methods=['GET'])
-def menu_dia():
-    dia_semana = datetime.today().strftime('%A')  # 'Monday', 'Tuesday', etc.
-    dias_map = {
-        'Monday': 'Lunes',
-        'Tuesday': 'Martes',
-        'Wednesday': 'Miércoles',
-        'Thursday': 'Jueves',
-        'Friday': 'Viernes'
-    }
-    dia_es = dias_map.get(dia_semana, 'Lunes')
-    
-    conn = get_db_connection()
-    menu = conn.execute('SELECT platos FROM menu WHERE dia = ?', (dia_es,)).fetchone()
-    conn.close()
-
-    if menu:
-        import json
-        return jsonify({"dia": dia_es, "menu": json.loads(menu['platos'])})
-    else:
-        return jsonify({"dia": dia_es, "menu": []})
+# Servir frontend
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
