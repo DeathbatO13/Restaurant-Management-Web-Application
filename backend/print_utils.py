@@ -17,7 +17,7 @@ def imprimir_ticket(pedido, printer_name=None):
 
     texto = f"""
 ===================================
-       BARRIL 360 - PEDIDO
+       RESTAURANTE - PEDIDO
 ===================================
 
 Pedido #{pedido['id']}
@@ -58,7 +58,7 @@ TOTAL: ${pedido.get('total'):,.0f}
 
     hPrinter = win32print.OpenPrinter(printer_name)
     try:
-        hJob = win32print.StartDocPrinter(hPrinter, 1, ("Ticket Barril 360", None, "RAW"))
+        hJob = win32print.StartDocPrinter(hPrinter, 1, ("Ticket Restaurante", None, "RAW"))
         win32print.StartPagePrinter(hPrinter)
         with open(temp_path, "r", encoding="utf-8") as f:
             for line in f:

@@ -433,7 +433,7 @@ export default function Page() {
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="px-4 py-4">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold text-amber-700">Barril 360</h1>
+            <h1 className="text-2xl font-bold text-amber-700">Restaurante</h1>
             <div className="flex items-center gap-2">
               {/* Admin Button */}
               <Button
@@ -860,7 +860,7 @@ export default function Page() {
               style={{ background: "#fff" }}
             />
             <div>
-              <h3 className="font-semibold mb-1">Restaurante Barril 360</h3>
+              <h3 className="font-semibold mb-1">Restaurante</h3>
               <p className="text-sm text-amber-100 mb-1">Calle 123 #45-67, Centro</p>
               <p className="text-sm text-amber-100 mb-1">Teléfono: (555) 123-4567</p>
               <p className="text-sm text-amber-100">Abierto todos los días: 11:00 AM - 10:00 PM</p>
