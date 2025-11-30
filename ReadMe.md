@@ -53,6 +53,19 @@ El proyecto integra un **frontend desarrollado en Next.js** y un **backend imple
 
 
 ---
+## 📸 Capturas
+
+A continuación se presentan dos imágenes representativas de la interfaz:
+
+### Menú del Día
+<p align="center">
+  <img src="./imgs/inicio.png" alt="Menú del Día" width="80%">
+</p>
+
+### Carrito de Compras
+<p align="center">
+  <img src="./imgs/carrito.png" alt="Carrito de Compras" width="80%">
+</p>
 
 ---
 
@@ -150,8 +163,14 @@ http://localhost:8000
 
 http://localhost:3000
 
-> [! NOTE]
+> [!NOTE]
 > Durante desarrollo Flask hace proxy si los archivos no existen en static/.
+
+# My Project
+
+This is a brief description of my project.
+
+
 
 ## 🚀 Build para Producción
 
@@ -170,7 +189,7 @@ http://localhost:3000
 
     python app.py
 
-> [! NOTE]
+> [!NOTE]
 > Flask servirá toda la aplicación desde los archivos estáticos.
 
 🤝 Autores
