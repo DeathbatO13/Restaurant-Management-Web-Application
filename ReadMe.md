@@ -198,4 +198,4 @@ Proyecto desarrollado en colaboración:
 
 [Nicolas Ávila](https://github.com/Nico-gear15) -> frontend (Next.js + TypeScript + Tailwind).
 
-Daniel Torres -> backend (Flask + administración + API + lógica de pedidos + impresión).
+[Daniel Torres](https://github.com/DeathbatO13) -> backend (Flask + administración + API + lógica de pedidos + impresión).
