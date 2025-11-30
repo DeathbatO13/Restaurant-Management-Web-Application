@@ -150,7 +150,7 @@ http://localhost:8000
 
 http://localhost:3000
 
-> [! NOTE]
+> [!NOTE]
 > Durante desarrollo Flask hace proxy si los archivos no existen en static/.
 
 ## 🚀 Build para Producción
@@ -170,7 +170,7 @@ http://localhost:3000
 
     python app.py
 
-> [! NOTE]
+> [!NOTE]
 > Flask servirá toda la aplicación desde los archivos estáticos.
 
 🤝 Autores
