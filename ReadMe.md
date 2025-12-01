@@ -196,6 +196,6 @@ This is a brief description of my project.
 
 Proyecto desarrollado en colaboración:
 
-[Nicolas Ávila](https://github.com/Nico-gear15) -> frontend (Next.js + TypeScript + Tailwind).
+[Nicolas Avila](https://github.com/Nico-gear15) -> frontend (Next.js + TypeScript + Tailwind).
 
 [Daniel Torres](https://github.com/DeathbatO13) -> backend (Flask + administración + API + lógica de pedidos + impresión).
